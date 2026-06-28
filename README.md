@@ -34,6 +34,24 @@ The Rust code keeps native ABI exports in `src/lib.rs`, shared buffer/JSON helpe
 | `clientCertificate` | Client certificate / mTLS | `privateKey`, `privateKeyPassphrase` |
 | `customDriverOptions` | Custom driver options | `password`, `token`, `privateKey`, `privateKeyPassphrase` |
 
+## Experience Metadata
+
+- Domains: `graph`
+- Result views: `graph`, `path`, `table`, `json`
+- Inspired by: `ArangoDB Web Interface Graph Viewer`, `AQL graph traversals`, `AQL shortest path`
+
+| Workflow | Result view | Templates |
+|---|---|---|
+| Explore neighborhood | graph | graph-aql-neighborhood |
+| Shortest path | path | graph-aql-shortest-path |
+| Collection sample | table | graph-aql-sample |
+
+| Template | Label | Language | Result view |
+|---|---|---|---|
+| `graph-aql-neighborhood` | Neighborhood traversal | `aql` | `graph` |
+| `graph-aql-shortest-path` | Shortest path | `aql` | `path` |
+| `graph-aql-sample` | Collection sample | `aql` | `table` |
+
 ## ABI Calls
 
 The scaffold handles these JSON requests today:
