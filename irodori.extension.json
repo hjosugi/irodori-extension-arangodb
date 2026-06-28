@@ -305,6 +305,145 @@
             "arangodb"
           ],
           "customDriverOptions": true
+        },
+        "experience": {
+          "schemaVersion": 1,
+          "domains": [
+            "graph"
+          ],
+          "inspiredBy": [
+            "ArangoDB Web Interface Graph Viewer",
+            "AQL graph traversals",
+            "AQL shortest path"
+          ],
+          "resultViews": [
+            "graph",
+            "path",
+            "table",
+            "json"
+          ],
+          "objectTypes": [
+            "graphs",
+            "vertexCollections",
+            "edgeCollections",
+            "indexes",
+            "analyzers"
+          ],
+          "workflows": [
+            {
+              "id": "graph-neighborhood",
+              "label": "Explore neighborhood",
+              "description": "Start from one vertex and return the surrounding path objects.",
+              "resultView": "graph",
+              "templateIds": [
+                "graph-aql-neighborhood"
+              ]
+            },
+            {
+              "id": "graph-shortest-path",
+              "label": "Shortest path",
+              "description": "Trace the shortest route between two vertices in a named graph.",
+              "resultView": "path",
+              "templateIds": [
+                "graph-aql-shortest-path"
+              ]
+            },
+            {
+              "id": "graph-collection-sample",
+              "label": "Collection sample",
+              "description": "Inspect vertex or edge documents before building a traversal.",
+              "resultView": "table",
+              "templateIds": [
+                "graph-aql-sample"
+              ]
+            }
+          ],
+          "queryTemplates": [
+            {
+              "id": "graph-aql-neighborhood",
+              "label": "Neighborhood traversal",
+              "language": "aql",
+              "description": "Return paths around a starting vertex.",
+              "insertText": "FOR v, e, p IN 1..2 ANY @startVertex GRAPH @graphName\n  LIMIT @limit\n  RETURN p",
+              "parameters": [
+                {
+                  "id": "graphName",
+                  "label": "Graph name",
+                  "type": "string"
+                },
+                {
+                  "id": "startVertex",
+                  "label": "Start vertex id",
+                  "type": "string"
+                },
+                {
+                  "id": "limit",
+                  "label": "Limit",
+                  "type": "number",
+                  "default": 25
+                }
+              ],
+              "resultView": "graph"
+            },
+            {
+              "id": "graph-aql-shortest-path",
+              "label": "Shortest path",
+              "language": "aql",
+              "description": "Find the shortest path between source and target vertices.",
+              "insertText": "FOR v, e, p IN OUTBOUND SHORTEST_PATH @source TO @target GRAPH @graphName\n  RETURN p",
+              "parameters": [
+                {
+                  "id": "graphName",
+                  "label": "Graph name",
+                  "type": "string"
+                },
+                {
+                  "id": "source",
+                  "label": "Source vertex id",
+                  "type": "string"
+                },
+                {
+                  "id": "target",
+                  "label": "Target vertex id",
+                  "type": "string"
+                }
+              ],
+              "resultView": "path"
+            },
+            {
+              "id": "graph-aql-sample",
+              "label": "Collection sample",
+              "language": "aql",
+              "description": "Preview graph collection documents.",
+              "insertText": "FOR doc IN @@collection\n  LIMIT @limit\n  RETURN doc",
+              "parameters": [
+                {
+                  "id": "collection",
+                  "label": "Collection",
+                  "type": "string"
+                },
+                {
+                  "id": "limit",
+                  "label": "Limit",
+                  "type": "number",
+                  "default": 25
+                }
+              ],
+              "resultView": "table"
+            }
+          ],
+          "inspectorHints": [
+            {
+              "id": "graph-name",
+              "label": "Graph selector",
+              "description": "Expose named graphs alongside vertex and edge collections."
+            },
+            {
+              "id": "edge-direction",
+              "label": "Direction toggle",
+              "description": "Let users switch OUTBOUND, INBOUND, and ANY traversal direction."
+            }
+          ]
         }
       }
     ]
