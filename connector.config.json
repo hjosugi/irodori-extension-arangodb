@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "visibility": "public",
+  "extensionId": "irodori.arangodb",
+  "connector": {
+    "id": "arangodb.connector",
+    "engine": "arangodb",
+    "label": "ArangoDB",
+    "aliases": [
+      "arangodb",
+      "ArangoDB"
+    ],
+    "defaultPort": 8529,
+    "wire": "graph",
+    "module": "arangodb.driver",
+    "features": [
+      "metadata",
+      "sql"
+    ]
+  },
+  "runtime": {
+    "abi": "irodori.connector.native.v1",
+    "module": {
+      "id": "arangodb.driver",
+      "path": "dist/native",
+      "platforms": [
+        "windowsX64",
+        "windowsArm64",
+        "macosX64",
+        "macosArm64",
+        "linuxX64",
+        "linuxArm64"
+      ]
+    },
+    "crate": "irodori_extension_arangodb",
+    "entrypoints": [
+      "irodori_extension_abi_version",
+      "irodori_extension_manifest_json",
+      "irodori_connector_config_json",
+      "irodori_connector_call_json"
+    ]
+  },
+  "source": {
+    "marketplaceId": "irodori.arangodb",
+    "repository": "https://github.com/hjosugi/irodori-extension-arangodb",
+    "knowledgeEngineStatus": "recognized_no_connector",
+    "adapter": null
+  }
+}

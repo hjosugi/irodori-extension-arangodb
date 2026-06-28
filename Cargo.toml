@@ -1,0 +1,13 @@
+[package]
+name = "irodori-extension-arangodb"
+version = "0.1.0"
+edition = "2021"
+license = "MIT OR 0BSD"
+publish = false
+
+[lib]
+name = "irodori_extension_arangodb"
+crate-type = ["cdylib", "rlib"]
+
+[dev-dependencies]
+serde_json = "1"

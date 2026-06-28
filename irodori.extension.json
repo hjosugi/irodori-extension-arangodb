@@ -1,0 +1,65 @@
+{
+  "$schema": "https://irodori.dev/schemas/irodori.extension.schema.json",
+  "manifestVersion": 1,
+  "id": "irodori.arangodb",
+  "name": "ArangoDB Connector",
+  "version": "0.1.0",
+  "publisher": "irodori",
+  "description": "ArangoDB Connector contributes the ArangoDB database connector through the native connector ABI.",
+  "license": "MIT OR 0BSD",
+  "repository": "https://github.com/hjosugi/irodori-extension-arangodb",
+  "apiVersion": "0.1",
+  "runtime": "native",
+  "entry": "dist/native",
+  "permissions": [
+    "connections:read",
+    "connections:write",
+    "queries:run",
+    "metadata:read",
+    "native",
+    "connectors"
+  ],
+  "contributes": {
+    "connectors": [
+      {
+        "id": "arangodb.connector",
+        "engine": "arangodb",
+        "label": "ArangoDB",
+        "aliases": [
+          "arangodb",
+          "ArangoDB"
+        ],
+        "defaultPort": 8529,
+        "wire": "graph",
+        "module": "arangodb.driver",
+        "features": [
+          "metadata",
+          "sql"
+        ]
+      }
+    ]
+  },
+  "capabilities": {
+    "nativeModules": [
+      {
+        "id": "arangodb.driver",
+        "path": "dist/native",
+        "platforms": [
+          "windowsX64",
+          "windowsArm64",
+          "macosX64",
+          "macosArm64",
+          "linuxX64",
+          "linuxArm64"
+        ]
+      }
+    ]
+  },
+  "dev": {
+    "watch": [
+      "src",
+      "connector.config.json",
+      "irodori.extension.json"
+    ]
+  }
+}
