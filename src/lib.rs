@@ -45,7 +45,9 @@ pub extern "C" fn irodori_connector_config_json() -> IrodoriConnectorBuffer {
 }
 
 #[no_mangle]
-pub extern "C" fn irodori_connector_call_json(_request: IrodoriConnectorBuffer) -> IrodoriConnectorBuffer {
+pub extern "C" fn irodori_connector_call_json(
+    _request: IrodoriConnectorBuffer,
+) -> IrodoriConnectorBuffer {
     static_buffer(NOT_LINKED_RESPONSE_JSON)
 }
 
